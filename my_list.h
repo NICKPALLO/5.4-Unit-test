@@ -1,9 +1,5 @@
 #include <iostream>
 
-#include <catch2/catch_test_macros.hpp>
-
-#include <cstdint>
-
 
 struct ListNode
 {
@@ -97,73 +93,3 @@ private:
     ListNode* m_tail;
     unsigned long m_size;
 };
-
-
-
-TEST_CASE("First task")
-{
-    List list;
-    list.PushBack(5);
-    list.PushBack(10);
-    SECTION("Empty")
-    {
-        INFO("list is not empty, something is wrong");
-        CHECK(list.Empty() != true);
-    }
-    SECTION("SIZE")
-    {
-        INFO("Incorrect size");
-        CHECK(list.Size() == 2);
-    }
-    list.Clear();
-    SECTION("CLEAR")
-    {
-        INFO("After clear list is not empty");
-        CHECK(list.Empty() == true);
-        //CHECK(list.m_head->next == list.m_tail);
-    }
-}
-
-TEST_CASE("Second task")
-{
-    List list;
-    list.PushBack(5);
-    SECTION("PUSH_BACK")
-    {
-        INFO("Incorrect size");
-        CHECK(list.Size() == 1);
-    }
-    list.PushFront(6);
-    SECTION("PUSH_FRONT")
-    {
-        INFO("Incorrect size");
-        CHECK(list.Size() == 2);
-    }
-    list.Clear();
-    SECTION("POP_BACK")
-    {
-        bool error = false;
-        try {
-            list.PopBack();
-        }
-        catch (std::runtime_error ex)
-        {
-            error = true;
-        }
-        INFO("The function pop_back doesn't work correctly");
-        CHECK(error);
-    }
-    SECTION("POP_FRONT")
-    {
-        bool error = false;
-        try {
-            list.PopFront();
-        }
-        catch (std::runtime_error ex)
-        {
-            error = true;
-        }
-        INFO("The function pop_front doesn't work correctly");
-        CHECK(error);
-    }
-}
